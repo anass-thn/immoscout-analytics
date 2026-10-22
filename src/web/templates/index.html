@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Immoscout Analytics - Pepites DVF</title>
+    </head>
+    <body>
+        <h1>Immoscout Analytics 🏠</h1>
+        <p>Le détecteur d'opportunités immobilières en France.</p>
+        <hr>
+        <h2>Nombre de pépites détectées : {{ total_pepites }}</h2>
+    
+        <form action="/" method="get">
+            <label for="">Recherche par ville :</label>
+            <input type="text" name="ville" id="">
+            <input type="submit" value="Rechercher">
+            
+        </form>
+        <h3>Resultat de la recherche : {{ total_recherche}} pepites trouvees</h3>
+        <ul>
+            {% if ville %}
+                {% for p in pepites %}
+                <li>
+                    <strong>{{ p['Commune'] }}</strong> ({{ p['Type local'] }}) - 
+                    Prix : {{ p['Valeur fonciere'] }} € - 
+                    Prix/m² : {{ p['prix_m2'] | round(1) }} € | 
+                    Décote : {{ p['decote_pct'] | round(1) }} % | 
+                    Rendement : {{ p['rendement_brut'] | round(1) }} %
+                </li>
+                {% endfor %}
+            {% else %}
+                <h2> welcome tou you dans la recherche des pepites dans notre site 🏠🏠🏠</h2>
+            {% endif %}
+            
+        </ul>
+
+    </body>
+</html>
