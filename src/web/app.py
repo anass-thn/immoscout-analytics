@@ -1,8 +1,10 @@
 import pandas as pd
 from flask import Flask,render_template,request
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+df_pepites = pd.read_csv(os.path.join(BASE_DIR, 'data', 'processed', 'pepites.csv'))
 
 app = Flask(__name__)
-df_pepites = pd.read_csv('data/processed/pepites.csv')
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
